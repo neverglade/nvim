@@ -38,6 +38,7 @@ local base_scheme = {
 		peony = "#D699B6",
 		lavender = "#B6AFF3",
 		sky = "#85B1F8",
+		none = "NONE",
 	},
 	light = {
 		text = "#546168",
@@ -52,6 +53,7 @@ local base_scheme = {
 		peony = "#DF69BA",
 		lavender = "#9990EF",
 		sky = "#3A94C5",
+		none = "NONE",
 	},
 }
 

@@ -6,9 +6,11 @@ local M = {
 	---@type Neverglade.Config
 	default_config = {
 		--- Controls the hardness of the background. "soft", "medium", or "hard"
-		background = "medium",
+		background = "hard",
 		--- Controls how
 		transparent_background = 2,
+		italics = true,
+		italic_comments = true,
 	},
 }
 
