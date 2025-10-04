@@ -1,13 +1,16 @@
 ---@type Neverglade.Colors
 local colors = require("neverglade.colors")
+---@type Neverglade.Highlights
+local highlights = require("neverglade.highlights")
+---@type Neverglade.Util
+local util = require("neverglade.util")
 
 ---@class Neverglade
 local M = {
 	---@type Neverglade.Config
 	default_config = {
-		--- Controls the hardness of the background. "soft", "medium", or "hard"
-		background = "hard",
 		--- Controls how
+		variety = "ebony",
 		transparent_background = 2,
 		italics = true,
 		italic_comments = true,
@@ -21,7 +24,10 @@ M.setup = function(opts)
 end
 
 M.load = function()
-	local scheme = colors.generate_scheme(M.config, vim.o.background)
+	local scheme = colors.generate_scheme(M.config, M.config.variety)
+	local generated_syntax = highlights.generate_syntax(scheme, M.config)
+
+	util.load(generated_syntax)
 end
 
 M.colorscheme = M.load

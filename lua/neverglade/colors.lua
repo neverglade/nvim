@@ -2,8 +2,8 @@
 local M = {}
 
 ---@type Neverglade.SchemeBackgrounds
-local hard_background = {
-	dark = {
+local background_scheme = {
+	ebony = {
 		earth = "#1E2326",
 		root = "#272E33",
 		heartwood = "#2E383C",
@@ -12,7 +12,7 @@ local hard_background = {
 		branch = "#495156",
 		leaf = "#4F5B58",
 	},
-	light = {
+	birch = {
 		earth = "#FFFBEF",
 		root = "#F8F5E4",
 		heartwood = "#EFEBD7",
@@ -25,10 +25,13 @@ local hard_background = {
 
 ---@type table<Neverglade.Backgrounds, Neverglade.SchemeBase>
 local base_scheme = {
-	dark = {
+	ebony = {
 		text = "#D3C6AA",
 		subtext1 = "#B2A996",
 		subtext0 = "#837C6D",
+		gray2 = "#7A8478",
+		gray1 = "#859289",
+		gray0 = "#9DA9A0",
 		lichen = "#A7C080",
 		moss = "#83C092",
 		ember = "#E67E80",
@@ -40,10 +43,13 @@ local base_scheme = {
 		sky = "#85B1F8",
 		none = "NONE",
 	},
-	light = {
+	birch = {
 		text = "#546168",
 		subtext1 = "#67767F",
 		subtext0 = "#809598",
+		gray2 = "#A6B0A0",
+		gray1 = "#939F91",
+		gray0 = "#64787D",
 		lichen = "#98AC0C",
 		moss = "#3CAF83",
 		ember = "#F85552",
@@ -62,16 +68,11 @@ M.generate_scheme = function(options, theme)
 	local base = base_scheme[theme]
 
 	---@type Neverglade.SchemeBackground
-	local backround
-
-	if background_style == "hard" then
-		backround = hard_background[theme]
-	else
-		backround = hard_background[theme]
-	end
+	local background
+	background = background_scheme[theme]
 
 	---@type Neverglade.Scheme
-	local combined = vim.tbl_extend("force", base, backround)
+	local combined = vim.tbl_extend("force", base, background)
 
 	return combined
 end

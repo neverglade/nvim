@@ -1,4 +1,4 @@
----@class Everforest.Util
+---@class Neverglade.Util
 local util = {}
 
 util.generate_highlight = function(group, hl)
@@ -22,7 +22,6 @@ util.load = function(generated_syntax)
 	end
 
 	vim.o.termguicolors = true
-	vim.g.colors_name = "everforest"
 
 	util.generate_highlights(generated_syntax)
 end

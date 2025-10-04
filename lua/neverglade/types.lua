@@ -4,13 +4,13 @@
 ---@field load fun()
 
 ---@class Neverglade.Config
----@field background "soft" | "medium" | "hard"
+---@field variety string
 ---@field transparent_background? 0 | 1 | 2
 ---@field italics boolean
 ---@field italic_comments boolean
 
 ---@class Neverglade.SetupOptions
----@field background? "soft" | "medium" | "hard"
+---@field variety? string
 ---@field transparent_background? 0 | 1 | 2
 ---@field italics? boolean
 ---@field italic_comments? boolean
@@ -28,6 +28,9 @@
 ---@field text string
 ---@field subtext1 string
 ---@field subtext0 string
+---@field gray2 string
+---@field gray1 string
+---@field gray0 string
 ---@field lichen string
 ---@field moss string
 ---@field ochre string
@@ -41,7 +44,7 @@
 
 ---@class Neverglade.Scheme: Neverglade.SchemeBase, Neverglade.SchemeBackground
 
----@alias Neverglade.Backgrounds "light" | "dark"
+---@alias Neverglade.Backgrounds "ebony" | "oak" | "birch"
 ---@alias Neverglade.SchemeBackgrounds table<Neverglade.Backgrounds, Neverglade.SchemeBackground>
 
 ---@alias Neverglade.HighlightArgs "bold" | "underline" | "undercurl" | "underdouble" | "underdotted" | "underdashed" | "strikethrough" | "reverse" | "inverse" | "italic" | "standout" | "altfont" | "nocombine" | "NONE"
@@ -63,7 +66,7 @@
 ---@field generate_syntax fun(scheme: Neverglade.Scheme, options: Neverglade.Config): Neverglade.Highlights
 
 ---@class Neverglade.Colors
----@field generate_scheme fun(options: Neverglade.Config, theme: "dark" | "light"): Neverglade.Scheme
+---@field generate_scheme fun(options: Neverglade.Config, theme: Neverglade.Backgrounds): Neverglade.Scheme
 
 ---@class Neverglade.ColourUtility
 ---@field blend fun(foreground: string, alpha: string|number, background: string): string
