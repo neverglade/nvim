@@ -57,9 +57,34 @@ highlights.generate_syntax = function(scheme, options)
 
 	---@type Neverglade.Highlights
 	local syntax = {
-		ColorColumn = syntax_entry(scheme.none, scheme.heartwood),
+		ColorColumn = syntax_entry(scheme.none, scheme.root),
+		Conceal = syntax_entry(scheme.bark, scheme.gray0),
+		CurSearch = { link = "IncSearch" },
 		Cursor = syntax_entry(scheme.none, scheme.none, { styles.reverse }),
-		Normal = syntax_entry(scheme.text, scheme.root),
+		lCursor = { link = "Cursor" },
+		CursorIM = { link = "Cursor" },
+		CursorColumn = syntax_entry(scheme.none, scheme.root),
+		CursorLine = syntax_entry(scheme.none, scheme.root),
+		Directory = syntax_entry(scheme.lichen, scheme.none),
+		--- DiffAdd, DiffChange, DiffDelete, DiffText
+		EndOfBuffer = syntax_entry((options.show_eob and scheme.branch) or scheme.root, scheme.none),
+		TermCursor = { link = "Cursor" },
+		TermCursorNC = { link = "Cursor" },
+		ErrorMsg = syntax_entry(scheme.ember, scheme.none, { styles.bold, styles.underline }),
+		WinSeperator = { link = "VertSplit" },
+		Folded = syntax_entry(scheme.gray1, transparency_respecting_colour(scheme.root)),
+		--- FoldColumn, SignColumn
+		IncSearch = syntax_entry(scheme.earth, scheme.ember),
+		Substitute = syntax_entry(scheme.earth, scheme.ochre),
+		LineNr = syntax_entry(scheme.bark, scheme.none),
+		LineNrAbove = syntax_entry(scheme.bark, scheme.none),
+		LineNrBelow = syntax_entry(scheme.bark, scheme.none),
+		CursorLineNr = syntax_entry(scheme.gray1, scheme.root),
+		MatchParen = syntax_entry(scheme.none, scheme.branch),
+		ModeMsg = syntax_entry(scheme.text, scheme.none, { styles.bold }),
+		MoreMsg = syntax_entry(scheme.ochre, scheme.none, { styles.bold }),
+		NonText = syntax_entry(scheme.branch, scheme.none),
+		Normal = syntax_entry(scheme.text, transparency_respecting_colour(scheme.root)),
 
 		Fg = syntax_entry(scheme.text, scheme.none),
 		Grey = syntax_entry(scheme.gray1, scheme.none),

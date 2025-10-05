@@ -8,12 +8,14 @@
 ---@field transparent_background? 0 | 1 | 2
 ---@field italics boolean
 ---@field italic_comments boolean
+---@field show_eob boolean
 
 ---@class Neverglade.SetupOptions
 ---@field variety? string
 ---@field transparent_background? 0 | 1 | 2
 ---@field italics? boolean
 ---@field italic_comments? boolean
+---@field show_eob? boolean
 
 ---@class Neverglade.SchemeBackground
 ---@field earth string

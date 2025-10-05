@@ -11,9 +11,10 @@ local M = {
 	default_config = {
 		--- Controls how
 		variety = "ebony",
-		transparent_background = 2,
+		transparent_background = 0,
 		italics = true,
 		italic_comments = true,
+		show_eob = false,
 	},
 }
 
