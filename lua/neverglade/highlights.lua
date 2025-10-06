@@ -74,8 +74,8 @@ highlights.generate_syntax = function(scheme, options)
 		WinSeperator = { link = "VertSplit" },
 		Folded = syntax_entry(scheme.gray1, transparency_respecting_colour(scheme.root)),
 		--- FoldColumn, SignColumn
-		IncSearch = syntax_entry(scheme.earth, scheme.ember),
-		Substitute = syntax_entry(scheme.earth, scheme.ochre),
+		IncSearch = syntax_entry(scheme.root, scheme.ember),
+		Substitute = syntax_entry(scheme.root, scheme.ochre),
 		LineNr = syntax_entry(scheme.bark, scheme.none),
 		LineNrAbove = syntax_entry(scheme.bark, scheme.none),
 		LineNrBelow = syntax_entry(scheme.bark, scheme.none),
@@ -85,6 +85,9 @@ highlights.generate_syntax = function(scheme, options)
 		MoreMsg = syntax_entry(scheme.ochre, scheme.none, { styles.bold }),
 		NonText = syntax_entry(scheme.branch, scheme.none),
 		Normal = syntax_entry(scheme.text, transparency_respecting_colour(scheme.root)),
+		NormalFloat = syntax_entry(scheme.text, scheme.earth),
+		FloatBorder = syntax_entry(scheme.gray1, scheme.earth),
+		FloatTitle = syntax_entry(scheme.gray1, scheme.earth, { styles.bold }),
 
 		Fg = syntax_entry(scheme.text, scheme.none),
 		Grey = syntax_entry(scheme.gray1, scheme.none),
@@ -111,6 +114,15 @@ highlights.generate_syntax = function(scheme, options)
 		AquaBold = syntax_entry(scheme.aurora, scheme.none, { styles.bold }),
 		BlueBold = syntax_entry(scheme.sky, scheme.none, { styles.bold }),
 		PurpleBold = syntax_entry(scheme.lavender, scheme.none, { styles.bold }),
+
+		--- Treesitter
+		TSStrong = syntax_entry(scheme.none, scheme.none, { styles.bold }),
+		TSEmphasis = syntax_entry(scheme.none, scheme.none, { styles.italic }),
+		TSUnderline = syntax_entry(scheme.none, scheme.none, { styles.underline }),
+		TSStrike = syntax_entry(scheme.none, scheme.none, { styles.strikethrough }),
+		TSNote = syntax_entry(scheme.root, scheme.lichen, { styles.bold }),
+		TSWarning = syntax_entry(scheme.root, scheme.ochre, { styles.bold }),
+		TSDanger = syntax_entry(scheme.root, scheme.ember, { styles.bold }),
 	}
 
 	return syntax
