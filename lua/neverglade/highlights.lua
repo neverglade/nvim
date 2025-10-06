@@ -40,7 +40,7 @@ local function syntax_entry(fg, bg, stylings, sp)
 end
 
 ---Generates the various highlight groups for this colour scheme to be used by Neovim.
-highlights.generate_syntax = function(scheme, options)
+highlights.generate_syntax = function(s, options)
 	local comment_italics = options.italic_comments and { styles.italic } or {}
 	local optional_italics = options.italics and { styles.italic } or {}
 
@@ -49,7 +49,7 @@ highlights.generate_syntax = function(scheme, options)
 	---@return string
 	local function transparency_respecting_colour(colour_to_set)
 		if options.transparent_background > 0 then
-			return scheme.none
+			return s.none
 		else
 			return colour_to_set
 		end
@@ -57,72 +57,92 @@ highlights.generate_syntax = function(scheme, options)
 
 	---@type Neverglade.Highlights
 	local syntax = {
-		ColorColumn = syntax_entry(scheme.none, scheme.root),
-		Conceal = syntax_entry(scheme.bark, scheme.gray0),
+		ColorColumn = syntax_entry(s.none, s.root),
+		Conceal = syntax_entry(s.bark, s.gray0),
 		CurSearch = { link = "IncSearch" },
-		Cursor = syntax_entry(scheme.none, scheme.none, { styles.reverse }),
+		Cursor = syntax_entry(s.none, s.none, { styles.reverse }),
 		lCursor = { link = "Cursor" },
 		CursorIM = { link = "Cursor" },
-		CursorColumn = syntax_entry(scheme.none, scheme.root),
-		CursorLine = syntax_entry(scheme.none, scheme.root),
-		Directory = syntax_entry(scheme.lichen, scheme.none),
+		CursorColumn = syntax_entry(s.none, s.root),
+		CursorLine = syntax_entry(s.none, s.root),
+		Directory = syntax_entry(s.lichen, s.none),
 		--- DiffAdd, DiffChange, DiffDelete, DiffText
-		EndOfBuffer = syntax_entry((options.show_eob and scheme.branch) or scheme.root, scheme.none),
+		EndOfBuffer = syntax_entry((options.show_eob and s.branch) or s.root, s.none),
 		TermCursor = { link = "Cursor" },
 		TermCursorNC = { link = "Cursor" },
-		ErrorMsg = syntax_entry(scheme.ember, scheme.none, { styles.bold, styles.underline }),
+		ErrorMsg = syntax_entry(s.ember, s.none, { styles.bold, styles.underline }),
 		WinSeperator = { link = "VertSplit" },
-		Folded = syntax_entry(scheme.gray1, transparency_respecting_colour(scheme.root)),
+		Folded = syntax_entry(s.gray1, transparency_respecting_colour(s.root)),
 		--- FoldColumn, SignColumn
-		IncSearch = syntax_entry(scheme.root, scheme.ember),
-		Substitute = syntax_entry(scheme.root, scheme.ochre),
-		LineNr = syntax_entry(scheme.bark, scheme.none),
-		LineNrAbove = syntax_entry(scheme.bark, scheme.none),
-		LineNrBelow = syntax_entry(scheme.bark, scheme.none),
-		CursorLineNr = syntax_entry(scheme.gray1, scheme.root),
-		MatchParen = syntax_entry(scheme.none, scheme.branch),
-		ModeMsg = syntax_entry(scheme.text, scheme.none, { styles.bold }),
-		MoreMsg = syntax_entry(scheme.ochre, scheme.none, { styles.bold }),
-		NonText = syntax_entry(scheme.branch, scheme.none),
-		Normal = syntax_entry(scheme.text, transparency_respecting_colour(scheme.root)),
-		NormalFloat = syntax_entry(scheme.text, scheme.earth),
-		FloatBorder = syntax_entry(scheme.gray1, scheme.earth),
-		FloatTitle = syntax_entry(scheme.gray1, scheme.earth, { styles.bold }),
+		IncSearch = syntax_entry(s.root, s.ember),
+		Substitute = syntax_entry(s.root, s.ochre),
+		LineNr = syntax_entry(s.bark, s.none),
+		LineNrAbove = syntax_entry(s.bark, s.none),
+		LineNrBelow = syntax_entry(s.bark, s.none),
+		CursorLineNr = syntax_entry(s.gray1, s.root),
+		MatchParen = syntax_entry(s.none, s.branch),
+		ModeMsg = syntax_entry(s.text, s.none, { styles.bold }),
+		MoreMsg = syntax_entry(s.ochre, s.none, { styles.bold }),
+		NonText = syntax_entry(s.branch, s.none),
+		Normal = syntax_entry(s.text, transparency_respecting_colour(s.root)),
+		NormalFloat = syntax_entry(s.text, s.earth),
+		FloatBorder = syntax_entry(s.gray1, s.earth),
+		FloatTitle = syntax_entry(s.gray1, s.earth, { styles.bold }),
 
-		Fg = syntax_entry(scheme.text, scheme.none),
-		Grey = syntax_entry(scheme.gray1, scheme.none),
-		Red = syntax_entry(scheme.ember, scheme.none),
-		Orange = syntax_entry(scheme.rust, scheme.none),
-		Yellow = syntax_entry(scheme.ochre, scheme.none),
-		Green = syntax_entry(scheme.lichen, scheme.none),
-		Aqua = syntax_entry(scheme.aurora, scheme.none),
-		Blue = syntax_entry(scheme.sky, scheme.none),
-		Purple = syntax_entry(scheme.lavender, scheme.none),
+		Terminal = syntax_entry(s.text, s.root),
+		VertSplit = syntax_entry(s.bark, s.none),
 
-		RedItalic = syntax_entry(scheme.ember, scheme.none, optional_italics),
-		OrangeItalic = syntax_entry(scheme.rust, scheme.none, optional_italics),
-		YellowItalic = syntax_entry(scheme.ochre, scheme.none, optional_italics),
-		GreenItalic = syntax_entry(scheme.lichen, scheme.none, optional_italics),
-		AquaItalic = syntax_entry(scheme.aurora, scheme.none, optional_italics),
-		BlueItalic = syntax_entry(scheme.sky, scheme.none, optional_italics),
-		PurpleItalic = syntax_entry(scheme.lavender, scheme.none, optional_italics),
+		--- Syntax
+		Comment = syntax_entry(s.subtext1, s.none, comment_italics and { styles.italic } or {}),
+		Constant = { link = "Aurora" },
+		String = { link = "Lichen" },
+		Character = { link = "Aurora" },
+		Number = { link = "Peony" },
+		Float = { link = "Number" },
+		Boolean = { link = "Peony" },
+		Function = { link = "Aurora" },
 
-		RedBold = syntax_entry(scheme.ember, scheme.none, { styles.bold }),
-		OrangeBold = syntax_entry(scheme.rust, scheme.none, { styles.bold }),
-		YellowBold = syntax_entry(scheme.ochre, scheme.none, { styles.bold }),
-		GreenBold = syntax_entry(scheme.lichen, scheme.none, { styles.bold }),
-		AquaBold = syntax_entry(scheme.aurora, scheme.none, { styles.bold }),
-		BlueBold = syntax_entry(scheme.sky, scheme.none, { styles.bold }),
-		PurpleBold = syntax_entry(scheme.lavender, scheme.none, { styles.bold }),
+		Text = syntax_entry(s.text, s.none),
+		Gray = syntax_entry(s.gray1, s.none),
+		Ember = syntax_entry(s.ember, s.none),
+		Rust = syntax_entry(s.rust, s.none),
+		Ochre = syntax_entry(s.ochre, s.none),
+		Lichen = syntax_entry(s.lichen, s.none),
+		Aurora = syntax_entry(s.aurora, s.none),
+		Peony = syntax_entry(s.peony, s.none),
+		Sky = syntax_entry(s.sky, s.none),
+		Lavender = syntax_entry(s.lavender, s.none),
+
+		EmberItalic = syntax_entry(s.ember, s.none, optional_italics),
+		RustItalic = syntax_entry(s.rust, s.none, optional_italics),
+		OchreItalic = syntax_entry(s.ochre, s.none, optional_italics),
+		LichenItalic = syntax_entry(s.lichen, s.none, optional_italics),
+		AuroraItalic = syntax_entry(s.aurora, s.none, optional_italics),
+		SkyItalic = syntax_entry(s.sky, s.none, optional_italics),
+		LavenderItalic = syntax_entry(s.lavender, s.none, optional_italics),
+
+		EmberBold = syntax_entry(s.ember, s.none, { styles.bold }),
+		RustBold = syntax_entry(s.rust, s.none, { styles.bold }),
+		OchreBold = syntax_entry(s.ochre, s.none, { styles.bold }),
+		LichenBold = syntax_entry(s.lichen, s.none, { styles.bold }),
+		AuroraBold = syntax_entry(s.aurora, s.none, { styles.bold }),
+		SkyBold = syntax_entry(s.sky, s.none, { styles.bold }),
+		LavenderBold = syntax_entry(s.lavender, s.none, { styles.bold }),
 
 		--- Treesitter
-		TSStrong = syntax_entry(scheme.none, scheme.none, { styles.bold }),
-		TSEmphasis = syntax_entry(scheme.none, scheme.none, { styles.italic }),
-		TSUnderline = syntax_entry(scheme.none, scheme.none, { styles.underline }),
-		TSStrike = syntax_entry(scheme.none, scheme.none, { styles.strikethrough }),
-		TSNote = syntax_entry(scheme.root, scheme.lichen, { styles.bold }),
-		TSWarning = syntax_entry(scheme.root, scheme.ochre, { styles.bold }),
-		TSDanger = syntax_entry(scheme.root, scheme.ember, { styles.bold }),
+		["@variable"] = { link = "Fg" },
+		["@variable.builtin"] = { link = "LavenderItalic" },
+		["@variable.parameter"] = { link = "Text" },
+		["@variable.member"] = { link = "Sky" },
+
+		["@constant"] = { link = "Aurora" },
+		["@constant.builtin"] = { link = "LavenderItalic" },
+		["@constant.macro"] = { link = "LavenderItalic" },
+
+		["@module"] = { link = "OchreItalic" },
+		["@label"] = { link = "Rust" },
+
+		["@string"] = { link = "String" },
 	}
 
 	return syntax
