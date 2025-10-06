@@ -64,6 +64,8 @@
 ---@field generate_highlights fun(syntax_entries: Neverglade.Highlights)
 ---@field load fun(generated_syntax: Neverglade.Highlights)
 
+---@alias Neverglade.Styles enum
+
 ---@class Neverglade.Highlighter
 ---@field generate_syntax fun(scheme: Neverglade.Scheme, options: Neverglade.Config): Neverglade.Highlights
 
