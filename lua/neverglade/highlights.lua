@@ -130,6 +130,7 @@ highlights.generate_syntax = function(s, options)
 		Rust = syntax_entry(s.rust, s.none),
 		Ochre = syntax_entry(s.ochre, s.none),
 		Lichen = syntax_entry(s.lichen, s.none),
+		Moss = syntax_entry(s.moss, s.none),
 		Aurora = syntax_entry(s.aurora, s.none),
 		Peony = syntax_entry(s.peony, s.none),
 		Sky = syntax_entry(s.sky, s.none),
@@ -150,6 +151,10 @@ highlights.generate_syntax = function(s, options)
 		AuroraBold = syntax_entry(s.aurora, s.none, { styles.bold }),
 		SkyBold = syntax_entry(s.sky, s.none, { styles.bold }),
 		LavenderBold = syntax_entry(s.lavender, s.none, { styles.bold }),
+
+		Added = { link = "Moss" },
+		Removed = { link = "Ember" },
+		Changed = { link = "Aurora" },
 
 		--- LSP
 		Boolean = syntax_entry(s.lavender, s.none),
