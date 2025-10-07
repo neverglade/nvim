@@ -13,6 +13,7 @@
 ---@field dim_inactive Neverglade.DimInactive?
 ---@field show_eob boolean?
 ---@field diagnostics Neverglade.Diagnostics?
+---@field terminal boolean?
 
 ---@class Neverglade.Diagnostics
 ---@field text boolean

@@ -71,7 +71,7 @@ highlights.generate_syntax = function(s, options)
 		TermCursor = { link = "Cursor" },
 		TermCursorNC = { link = "Cursor" },
 		ErrorMsg = syntax_entry(s.ember, s.none, { styles.bold, styles.underline }),
-		WinSeprator = { link = "VertSplit" },
+		WinSeparator = { link = "VertSplit" },
 		Folded = syntax_entry(s.gray1, transparency_respecting_colour(s.root)),
 		--- FoldColumn, SignColumn
 		IncSearch = syntax_entry(s.root, s.ember),
@@ -237,29 +237,31 @@ highlights.generate_syntax = function(s, options)
 		["@string"] = { link = "String" },
 	}
 
-	vim.g.terminal_color_0 = s.sapwood
-	vim.g.terminal_color_8 = s.sapwood
+	if options.terminal then
+		vim.g.terminal_color_0 = s.sapwood
+		vim.g.terminal_color_8 = s.sapwood
 
-	vim.g.terminal_color_1 = s.ember
-	vim.g.terminal_color_9 = s.ember
+		vim.g.terminal_color_1 = s.ember
+		vim.g.terminal_color_9 = s.ember
 
-	vim.g.terminal_color_2 = s.lichen
-	vim.g.terminal_color_10 = s.lichen
+		vim.g.terminal_color_2 = s.lichen
+		vim.g.terminal_color_10 = s.lichen
 
-	vim.g.terminal_color_3 = s.ochre
-	vim.g.terminal_color_11 = s.ochre
+		vim.g.terminal_color_3 = s.ochre
+		vim.g.terminal_color_11 = s.ochre
 
-	vim.g.terminal_color_4 = s.sky
-	vim.g.terminal_color_12 = s.sky
+		vim.g.terminal_color_4 = s.sky
+		vim.g.terminal_color_12 = s.sky
 
-	vim.g.terminal_color_5 = s.lavender
-	vim.g.terminal_color_13 = s.lavender
+		vim.g.terminal_color_5 = s.lavender
+		vim.g.terminal_color_13 = s.lavender
 
-	vim.g.terminal_color_6 = s.aurora
-	vim.g.terminal_color_14 = s.aurora
+		vim.g.terminal_color_6 = s.aurora
+		vim.g.terminal_color_14 = s.aurora
 
-	vim.g.terminal_color_7 = s.text
-	vim.g.terminal_color_15 = s.text
+		vim.g.terminal_color_7 = s.text
+		vim.g.terminal_color_15 = s.text
+	end
 
 	return syntax
 end

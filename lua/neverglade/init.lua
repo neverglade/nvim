@@ -19,6 +19,7 @@ local M = {
 			text = false,
 			virtual = "colored",
 		},
+		terminal = true,
 	},
 }
 
