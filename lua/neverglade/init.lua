@@ -7,7 +7,7 @@ local util = require("neverglade.util")
 
 ---@class Neverglade
 local M = {
-	---@type Neverglade.Config
+	---@type Neverglade.Options
 	default_config = {
 		--- Controls how
 		variety = "ebony",
@@ -17,7 +17,6 @@ local M = {
 		show_eob = false,
 		diagnostics = {
 			text = false,
-			line = false,
 			virtual = "colored",
 		},
 	},

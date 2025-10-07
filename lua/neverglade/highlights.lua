@@ -71,7 +71,7 @@ highlights.generate_syntax = function(s, options)
 		TermCursor = { link = "Cursor" },
 		TermCursorNC = { link = "Cursor" },
 		ErrorMsg = syntax_entry(s.ember, s.none, { styles.bold, styles.underline }),
-		WinSeparator = { link = "VertSplit" },
+		WinSeprator = { link = "VertSplit" },
 		Folded = syntax_entry(s.gray1, transparency_respecting_colour(s.root)),
 		--- FoldColumn, SignColumn
 		IncSearch = syntax_entry(s.root, s.ember),
@@ -159,11 +159,29 @@ highlights.generate_syntax = function(s, options)
 		Removed = { link = "Ember" },
 		Changed = { link = "Aurora" },
 
+		ErrorText = syntax_entry(s.none, options.diagnostics.text and s.ember or s.none, { styles.undercurl }),
+		WarningText = syntax_entry(s.none, options.diagnostics.text and s.ochre or s.none, { styles.undercurl }),
+		InfoText = syntax_entry(s.none, options.diagnostics.text and s.sky or s.none, { styles.undercurl }),
+		HintText = syntax_entry(s.none, options.diagnostics.text and s.lavender or s.none, { styles.undercurl }),
+
+		--- Disable line styles
+		ErrorLine = syntax_entry(s.none, s.none),
+		WarningLine = syntax_entry(s.none, s.none),
+		InfoLine = syntax_entry(s.none, s.none),
+		HintLine = syntax_entry(s.none, s.none),
+
 		VirtualTextWarning = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Ochre" },
 		VirtualTextError = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Ember" },
-		VirtualTextInfo = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Aurora" },
+		VirtualTextInfo = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Sky" },
 		VirtualTextHint = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Lavender" },
 		VirtualTextOk = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Moss" },
+
+		ErrorFloat = syntax_entry(s.ember, s.none),
+		WarningFloat = syntax_entry(s.ochre, s.none),
+		InfoFloat = syntax_entry(s.sky, s.none),
+		HintFloat = syntax_entry(s.lavender, s.none),
+		OkFloat = syntax_entry(s.moss, s.none),
+		CurrentWord = syntax_entry(s.none, s.none, { styles.bold }),
 
 		--- LSP
 		Boolean = syntax_entry(s.lavender, s.none),

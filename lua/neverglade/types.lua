@@ -16,7 +16,6 @@
 
 ---@class Neverglade.Diagnostics
 ---@field text boolean
----@field line boolean
 ---@field virtual "colored" | "gray"
 
 ---@class Neverglade.DimInactive
