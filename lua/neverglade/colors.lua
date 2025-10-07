@@ -13,12 +13,12 @@ local background_scheme = {
 		leaf = "#4F5B58",
 	},
 	birch = {
-		earth = "#FFFBEF",
-		root = "#F8F5E4",
-		heartwood = "#EFEBD7",
-		sapwood = "#EAE6CC",
-		bark = "#DED8BA",
-		branch = "#D2CCAD",
+		earth = "#F7F3DF",
+		root = "#EEE9D3",
+		heartwood = "#EAE6CC",
+		sapwood = "#E0DABD",
+		bark = "#D5D0B3",
+		branch = "#D0CAA9",
 		leaf = "#B5BDA8",
 	},
 }

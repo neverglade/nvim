@@ -45,7 +45,7 @@ highlights.generate_syntax = function(s, options)
 	local optional_italics = options.italics and { styles.italic } or {}
 
 	---This respects the transparency settings of the user.
-	---@param colour_to_set string The intended background if transparency is disabled
+	---@param colour_to_set string The intended background if tranparency is disabled
 	---@return string
 	local function transparency_respecting_colour(colour_to_set)
 		if options.transparent_background > 0 then
@@ -88,6 +88,31 @@ highlights.generate_syntax = function(s, options)
 		NormalFloat = syntax_entry(s.text, s.earth),
 		FloatBorder = syntax_entry(s.gray1, s.earth),
 		FloatTitle = syntax_entry(s.gray1, s.earth, { styles.bold }),
+		NormalNC = syntax_entry(s.text, s.root),
+		Pmenu = syntax_entry(s.text, s.sapwood),
+		PmenuSbar = syntax_entry(s.none, s.sapwood),
+		PmenuSel = syntax_entry(s.root, s.lichen),
+		PmenuThumb = syntax_entry(s.none, s.gray0),
+		Question = syntax_entry(s.ochre, s.none),
+		QuickFixLine = syntax_entry(s.lavender, s.none, { styles.bold }),
+		Search = syntax_entry(s.root, s.lichen),
+		SpecialKey = syntax_entry(s.ochre, s.none),
+		--- SpellBad, SpellLocal, SpellRare
+		StatusLine = syntax_entry(s.gray1, s.sapwood),
+		StatusLineNC = syntax_entry(
+			options.transparent_background == 2 and s.gray0 or s.gray1,
+			options.transparent_background == 2 and s.none or s.heartwood
+		),
+		TabLine = syntax_entry(s.gray2, s.heartwood),
+		TabLineFill = syntax_entry(s.gray1, s.heartwood),
+		TabLineSel = syntax_entry(s.root, s.lichen),
+		Title = syntax_entry(s.lichen, s.none, { styles.bold }),
+		Visual = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
+		VisualNOS = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
+		WarningMsg = syntax_entry(s.ochre, s.none, { styles.bold }),
+		Whitespace = syntax_entry(s.bark, s.none),
+		WildMenu = { link = "PmenuSel" },
+		WinBar = syntax_entry(s.gray1, s.sapwood, { styles.bold }),
 
 		Terminal = syntax_entry(s.text, s.root),
 		VertSplit = syntax_entry(s.bark, s.none),
@@ -130,7 +155,7 @@ highlights.generate_syntax = function(s, options)
 		LavenderBold = syntax_entry(s.lavender, s.none, { styles.bold }),
 
 		--- Treesitter
-		["@variable"] = { link = "Fg" },
+		["@variable"] = { link = "Text" },
 		["@variable.builtin"] = { link = "LavenderItalic" },
 		["@variable.parameter"] = { link = "Text" },
 		["@variable.member"] = { link = "Sky" },
