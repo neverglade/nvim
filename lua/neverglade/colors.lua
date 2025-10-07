@@ -19,7 +19,7 @@ local background_scheme = {
 		sapwood = "#E0DABD",
 		bark = "#D5D0B3",
 		branch = "#D0CAA9",
-		leaf = "#B5BDA8",
+		leaf = "#AEB79F",
 	},
 }
 
@@ -40,7 +40,7 @@ local base_scheme = {
 		aurora = "#7FBBB3",
 		peony = "#D699B6",
 		lavender = "#B6AFF3",
-		sky = "#85B1F8",
+		sky = "#75ABBD",
 		none = "NONE",
 	},
 	birch = {
