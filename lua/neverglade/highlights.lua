@@ -71,7 +71,7 @@ highlights.generate_syntax = function(s, options)
 		TermCursor = { link = "Cursor" },
 		TermCursorNC = { link = "Cursor" },
 		ErrorMsg = syntax_entry(s.ember, s.none, { styles.bold, styles.underline }),
-		WinSeperator = { link = "VertSplit" },
+		WinSeparator = { link = "VertSplit" },
 		Folded = syntax_entry(s.gray1, transparency_respecting_colour(s.root)),
 		--- FoldColumn, SignColumn
 		IncSearch = syntax_entry(s.root, s.ember),
@@ -135,6 +135,9 @@ highlights.generate_syntax = function(s, options)
 		Peony = syntax_entry(s.peony, s.none),
 		Sky = syntax_entry(s.sky, s.none),
 		Lavender = syntax_entry(s.lavender, s.none),
+		Gray2 = syntax_entry(s.gray2, s.none),
+		Gray1 = syntax_entry(s.gray1, s.none),
+		Gray0 = syntax_entry(s.gray0, s.none),
 
 		EmberItalic = syntax_entry(s.ember, s.none, optional_italics),
 		RustItalic = syntax_entry(s.rust, s.none, optional_italics),
@@ -155,6 +158,12 @@ highlights.generate_syntax = function(s, options)
 		Added = { link = "Moss" },
 		Removed = { link = "Ember" },
 		Changed = { link = "Aurora" },
+
+		VirtualTextWarning = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Ochre" },
+		VirtualTextError = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Ember" },
+		VirtualTextInfo = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Aurora" },
+		VirtualTextHint = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Lavender" },
+		VirtualTextOk = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Moss" },
 
 		--- LSP
 		Boolean = syntax_entry(s.lavender, s.none),

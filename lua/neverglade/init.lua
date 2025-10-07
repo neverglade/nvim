@@ -15,6 +15,11 @@ local M = {
 		italics = true,
 		italic_comments = true,
 		show_eob = false,
+		diagnostics = {
+			text = false,
+			line = false,
+			virtual = "colored",
+		},
 	},
 }
 

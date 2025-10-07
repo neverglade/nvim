@@ -1,21 +1,28 @@
 ---@class Neverglade
----@field config Neverglade.Config
----@field setup fun(opts: Neverglade.SetupOptions)
+---@field config Neverglade.Options
+---@field setup fun(opts: Neverglade.Options)
 ---@field load fun()
 
----@class Neverglade.Config
----@field variety string
----@field transparent_background? 0 | 1 | 2
----@field italics boolean
----@field italic_comments boolean
----@field show_eob boolean
+---@alias Neverglade.Variety "ebony" | "oak" | "birch"
 
----@class Neverglade.SetupOptions
----@field variety? string
----@field transparent_background? 0 | 1 | 2
----@field italics? boolean
----@field italic_comments? boolean
----@field show_eob? boolean
+---@class Neverglade.Options
+---@field variety Neverglade.Variety?
+---@field transparent_background? 0 | 1 | 2?
+---@field italics boolean?
+---@field italic_comments boolean?
+---@field dim_inactive Neverglade.DimInactive?
+---@field show_eob boolean?
+---@field diagnostics Neverglade.Diagnostics?
+
+---@class Neverglade.Diagnostics
+---@field text boolean
+---@field line boolean
+---@field virtual "colored" | "gray"
+
+---@class Neverglade.DimInactive
+---@field enabled boolean
+---@field shade "dark" | "light" | nil
+---@field amount number
 
 ---@class Neverglade.SchemeBackground
 ---@field earth string
@@ -67,10 +74,10 @@
 ---@alias Neverglade.Styles enum
 
 ---@class Neverglade.Highlighter
----@field generate_syntax fun(scheme: Neverglade.Scheme, options: Neverglade.Config): Neverglade.Highlights
+---@field generate_syntax fun(scheme: Neverglade.Scheme, options: Neverglade.Options): Neverglade.Highlights
 
 ---@class Neverglade.Colors
----@field generate_scheme fun(options: Neverglade.Config, theme: Neverglade.Backgrounds): Neverglade.Scheme
+---@field generate_scheme fun(options: Neverglade.Options, theme: Neverglade.Backgrounds): Neverglade.Scheme
 
 ---@class Neverglade.ColourUtility
 ---@field blend fun(foreground: string, alpha: string|number, background: string): string
