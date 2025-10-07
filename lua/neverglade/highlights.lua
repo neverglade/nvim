@@ -106,15 +106,20 @@ highlights.generate_syntax = function(s, options)
 		TabLine = syntax_entry(s.gray2, s.heartwood),
 		TabLineFill = syntax_entry(s.gray1, s.heartwood),
 		TabLineSel = syntax_entry(s.root, s.lichen),
-		Title = syntax_entry(s.lichen, s.none, { styles.bold }),
+		Title = syntax_entry(s.rust, s.none, { styles.bold }),
 		Visual = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
 		VisualNOS = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
 		WarningMsg = syntax_entry(s.ochre, s.none, { styles.bold }),
 		Whitespace = syntax_entry(s.bark, s.none),
 		WildMenu = { link = "PmenuSel" },
 		WinBar = syntax_entry(s.gray1, s.sapwood, { styles.bold }),
-
+		WinBarNC = syntax_entry(s.gray1, s.heartwood),
 		Terminal = syntax_entry(s.text, s.root),
+		ToolbarLine = syntax_entry(s.text, s.sapwood),
+
+		StatusLineTerm = syntax_entry(s.gray1, s.heartwood),
+		StatusLineTermNC = syntax_entry(s.gray1, s.root),
+
 		VertSplit = syntax_entry(s.bark, s.none),
 
 		--- Syntax
