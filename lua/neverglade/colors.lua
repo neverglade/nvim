@@ -64,7 +64,6 @@ local base_scheme = {
 }
 
 M.generate_scheme = function(options, theme)
-	local background_style = options.background or "medium"
 	local base = base_scheme[theme]
 
 	---@type Neverglade.SchemeBackground
