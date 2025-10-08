@@ -13,10 +13,15 @@
 ---@field show_eob boolean?
 ---@field diagnostics Neverglade.Diagnostics?
 ---@field terminal boolean?
+---@field default_integrations boolean?
+---@field integrations Neverglade.Integrations?
 
 ---@class Neverglade.Diagnostics
 ---@field text boolean
 ---@field virtual "colored" | "gray"
+
+---@class Neverglade.Integrations
+---@field telescope boolean?
 
 ---@class Neverglade.SchemeBackground
 ---@field earth string
@@ -54,7 +59,7 @@
 ---@class Neverglade.Highlight
 ---@field fg string?
 ---@field bg string?
----@field sp? string
+---@field sp string?
 ---@field style Neverglade.HighlightArgs[]?
 ---@field link string?
 

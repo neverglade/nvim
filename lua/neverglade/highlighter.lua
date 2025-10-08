@@ -1,32 +1,6 @@
 ---@class Neverglade.Highlighter
 local M = {}
 
----@type Neverglade.ColourUtility
-local c_util = require("neverglade.color_util")
-
----Generates a table that can be accepted by nvim_set_hl
----@param fg string
----@param bg string
----@param stylings? Styles[]
----@param sp? string
----@return { fg: string, bg: string, [Styles]: boolean?, sp: string? }
-local function syntax_entry(fg, bg, stylings, sp)
-	---@type { fg: string, bg: string, [Styles]: boolean?, sp: string? }
-	local highlight = { fg = fg, bg = bg }
-
-	if stylings then
-		for _, style in ipairs(stylings) do
-			highlight[style] = true
-		end
-	end
-
-	if sp then
-		highlight["sp"] = sp
-	end
-
-	return highlight
-end
-
 --- Converts a Nevserglade.Highlight into a table to be accepted by nvim_set_hl
 ---@param highlight Neverglade.Highlight
 local function apply_styles(highlight)
@@ -97,6 +71,23 @@ M.generate_theme = function(s, options)
 
 	local treesitter = require("neverglade.groups.treesitter").get()
 	theme = vim.tbl_deep_extend("force", theme, treesitter)
+
+	-- Dynamically load integrations from the config
+	for key, value in pairs(O.integrations) do
+		if value == true then
+			-- We use pcall here to detect failure so we can alert the user if the integration failed to load
+			---@type boolean, Neverglade.HighlightGroup
+			local success, integration = pcall(require, "neverglade.groups.integrations." .. key)
+			if success == true then
+				theme = vim.tbl_deep_extend("force", theme, integration.get())
+			else
+				vim.notify(
+					"Failed to load integration " .. key .. ". Please report this as a bug.",
+					vim.log.levels.WARN
+				)
+			end
+		end
+	end
 
 	theme = apply_table(theme)
 

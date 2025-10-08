@@ -21,12 +21,20 @@ local M = {
 			virtual = "colored",
 		},
 		terminal = true,
+		default_integrations = true,
+		integrations = {
+			telescope = true,
+		},
 	},
 }
 
 M.config = M.default_config
 
 M.setup = function(opts)
+	if opts.default_integrations == false then
+		M.default_config.integrations = {}
+	end
+
 	M.config = vim.tbl_extend("keep", opts or {}, M.default_config)
 end
 
