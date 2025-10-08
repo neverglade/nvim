@@ -26,6 +26,7 @@ local M = {
 			telescope = true,
 			which_key = true,
 			blink_cmp = true,
+			mason = true,
 		},
 	},
 }

@@ -24,6 +24,7 @@
 ---@field telescope boolean?
 ---@field which_key boolean?
 ---@field blink_cmp boolean?
+---@field mason boolean?
 
 ---@class Neverglade.SchemeBackground
 ---@field earth string
