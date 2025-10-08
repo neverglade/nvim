@@ -10,7 +10,7 @@ local M = {
 	---@type Neverglade.Options
 	default_config = {
 		--- Controls how
-		variety = "ebony",
+		variety = "oak",
 		transparent_background = false,
 		italics = true,
 		italic_comments = true,

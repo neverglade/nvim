@@ -13,7 +13,7 @@ function M.get()
 		Directory = { fg = C.lichen },
 		EndOfBuffer = { fg = (O.show_eob and C.branch) or C.root },
 		ErrorMsg = { fg = C.ember, style = { S.bold, S.underline } },
-		VertSplit = { fg = C.bark },
+		VertSplit = { fg = C.leaf },
 		Folded = { fg = C.gray1, bg = O.transparent_background and C.none or C.heartwood },
 		FoldColumn = { fg = C.leaf },
 		SignColumn = { fg = C.text },

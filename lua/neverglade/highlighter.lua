@@ -87,6 +87,12 @@ M.generate_theme = function(s, options)
 	local editor = require("neverglade.groups.editor").get()
 	theme = vim.tbl_deep_extend("force", theme, editor)
 
+	local syntax = require("neverglade.groups.syntax").get()
+	theme = vim.tbl_deep_extend("force", theme, syntax)
+
+	local lsp = require("neverglade.groups.lsp").get()
+	theme = vim.tbl_deep_extend("force", theme, lsp)
+
 	theme = apply_table(theme)
 
 	---@type Neverglade.Highlights
@@ -137,44 +143,6 @@ M.generate_theme = function(s, options)
 		HintFloat = syntax_entry(s.lavender, s.none),
 		OkFloat = syntax_entry(s.moss, s.none),
 		CurrentWord = syntax_entry(s.none, s.none, { S.bold }),
-
-		--- LSP
-		Boolean = syntax_entry(s.lavender, s.none),
-		Number = syntax_entry(s.lavender, s.none),
-		Float = syntax_entry(s.lavender, s.none),
-
-		PreProc = syntax_entry(s.lavender, s.none, optional_italics),
-		PreCondit = syntax_entry(s.lavender, s.none, optional_italics),
-		Include = syntax_entry(s.lavender, s.none, optional_italics),
-		Define = syntax_entry(s.lavender, s.none, optional_italics),
-		Conditional = syntax_entry(s.ember, s.none, optional_italics),
-		Repeat = syntax_entry(s.ember, s.none, optional_italics),
-		Keyword = syntax_entry(s.ember, s.none, optional_italics),
-		Typedef = syntax_entry(s.ember, s.none, optional_italics),
-		Exception = syntax_entry(s.ember, s.none, optional_italics),
-		Statement = syntax_entry(s.ember, s.none, optional_italics),
-
-		Error = syntax_entry(s.ember, s.none),
-		StorageClass = syntax_entry(s.rust, s.none),
-		Tag = syntax_entry(s.rust, s.none),
-		Structure = syntax_entry(s.rust, s.none),
-		Operator = syntax_entry(s.rust, s.none),
-		Special = syntax_entry(s.ochre, s.none),
-		SpecialChar = syntax_entry(s.ochre, s.none),
-		Type = syntax_entry(s.ochre, s.none),
-		Function = syntax_entry(s.lichen, s.none),
-		String = syntax_entry(s.moss, s.none),
-		Character = syntax_entry(s.moss, s.none),
-		Constant = syntax_entry(s.aurora, s.none),
-		Macro = syntax_entry(s.aurora, s.none),
-		Identifier = syntax_entry(s.sky, s.none),
-
-		Comment = syntax_entry(s.subtext1, s.none, comment_italics),
-		SpecialComment = syntax_entry(s.subtext1, s.none, comment_italics),
-
-		Delimiter = syntax_entry(s.text, s.none),
-		Ignore = syntax_entry(s.gray1, s.none),
-		Underlined = syntax_entry(s.none, s.none, { S.underline }),
 
 		--- Treesitter
 		["@variable"] = { link = "Text" },
