@@ -3,4 +3,7 @@
   Neverglade for <a href="https://github.com/neovim/neovim">Neovim</a>
 </h4>
 
-This is the premier Neverglade project. Although the aim of Neverglade is to never let a port languish, this port will receive updates the fastest.
+
+
+<p><i>This is the premier Neverglade project. Although the aim of Neverglade is to never let a port languish, this port will receive updates the fastest and acts as a testing bed for colour changes.</i></p>
+
