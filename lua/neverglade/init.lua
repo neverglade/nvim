@@ -25,6 +25,7 @@ local M = {
 		integrations = {
 			telescope = true,
 			which_key = true,
+			blink_cmp = true,
 		},
 	},
 }
