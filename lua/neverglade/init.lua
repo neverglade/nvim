@@ -24,6 +24,7 @@ local M = {
 		default_integrations = true,
 		integrations = {
 			telescope = true,
+			which_key = true,
 		},
 	},
 }
