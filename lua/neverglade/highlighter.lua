@@ -96,7 +96,7 @@ M.generate_theme = function(s, options)
 	theme = vim.tbl_deep_extend("force", theme, lsp)
 
 	local treesitter = require("neverglade.groups.treesitter").get()
-	theme = vim.tbl_deep_extend("force", theme, lsp)
+	theme = vim.tbl_deep_extend("force", theme, treesitter)
 
 	theme = apply_table(theme)
 

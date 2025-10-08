@@ -17,6 +17,7 @@ function M.get()
 		Repeat = { fg = C.ember, style = italics },
 		Keyword = { fg = C.ember, style = italics },
 		Typedef = { fg = C.ember, style = italics },
+		Type = { fg = C.ochre, style = italics },
 		Exception = { fg = C.ember, style = italics },
 		Statement = { fg = C.ember, style = italics },
 
@@ -27,13 +28,13 @@ function M.get()
 		Operator = { fg = C.rust },
 		Special = { fg = C.ochre },
 		SpecialChar = { fg = C.ochre },
-		Type = { fg = C.ochre },
 		Function = { fg = C.lichen },
 		String = { fg = C.moss },
 		Character = { fg = C.moss },
 		Constant = { fg = C.aurora },
 		Macro = { fg = C.aurora },
 		Identifier = { fg = C.sky },
+		Label = { fg = C.rust },
 
 		Comment = { fg = C.subtext0, style = comment_italics },
 		SpecialComment = { link = "Special" },
