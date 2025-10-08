@@ -82,6 +82,8 @@ M.generate_theme = function(s, options)
 	local optional_italics = { S.italic }
 	local comment_italics = { S.italic }
 
+	--- This could be done more compactly with dynamic requires, but I prefer
+	--- the simplicity of directly requiring each group for now
 	local theme = {}
 
 	local editor = require("neverglade.groups.editor").get()
@@ -91,6 +93,9 @@ M.generate_theme = function(s, options)
 	theme = vim.tbl_deep_extend("force", theme, syntax)
 
 	local lsp = require("neverglade.groups.lsp").get()
+	theme = vim.tbl_deep_extend("force", theme, lsp)
+
+	local treesitter = require("neverglade.groups.treesitter").get()
 	theme = vim.tbl_deep_extend("force", theme, lsp)
 
 	theme = apply_table(theme)
@@ -115,34 +120,6 @@ M.generate_theme = function(s, options)
 		Gray2 = syntax_entry(s.gray2, s.none),
 		Gray1 = syntax_entry(s.gray1, s.none),
 		Gray0 = syntax_entry(s.gray0, s.none),
-
-		Added = { link = "Moss" },
-		Removed = { link = "Ember" },
-		Changed = { link = "Aurora" },
-
-		ErrorText = syntax_entry(s.none, options.diagnostics.text and s.ember or s.none, { S.undercurl }),
-		WarningText = syntax_entry(s.none, options.diagnostics.text and s.ochre or s.none, { S.undercurl }),
-		InfoText = syntax_entry(s.none, options.diagnostics.text and s.sky or s.none, { S.undercurl }),
-		HintText = syntax_entry(s.none, options.diagnostics.text and s.lavender or s.none, { S.undercurl }),
-
-		--- Disable line styles
-		ErrorLine = syntax_entry(s.none, s.none),
-		WarningLine = syntax_entry(s.none, s.none),
-		InfoLine = syntax_entry(s.none, s.none),
-		HintLine = syntax_entry(s.none, s.none),
-
-		VirtualTextWarning = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Ochre" },
-		VirtualTextError = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Ember" },
-		VirtualTextInfo = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Sky" },
-		VirtualTextHint = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Lavender" },
-		VirtualTextOk = { link = options.diagnostics.virtual == "gray" and "Gray1" or "Moss" },
-
-		ErrorFloat = syntax_entry(s.ember, s.none),
-		WarningFloat = syntax_entry(s.ochre, s.none),
-		InfoFloat = syntax_entry(s.sky, s.none),
-		HintFloat = syntax_entry(s.lavender, s.none),
-		OkFloat = syntax_entry(s.moss, s.none),
-		CurrentWord = syntax_entry(s.none, s.none, { S.bold }),
 
 		--- Treesitter
 		["@variable"] = { link = "Text" },

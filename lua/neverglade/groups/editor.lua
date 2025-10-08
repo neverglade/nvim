@@ -68,6 +68,10 @@ function M.get()
 		WinBar = { fg = C.gray1, bg = C.sapwood, style = { S.bold } },
 		WinBarNC = { fg = C.gray1, bg = C.heartwood },
 		WinSeparator = { link = "VertSplit" },
+
+		Added = { fg = C.moss },
+		Removed = { fg = C.ember },
+		Changed = { fg = C.aurora },
 	}
 end
 
