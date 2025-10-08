@@ -1,6 +1,6 @@
-return function(flavour)
-	local F = flavour or "ebony"
+return function(variety)
 	local O = require("neverglade").config
+	local F = variety or O.variety or "oak"
 	local C = require("neverglade.colors").generate_scheme(O, F)
 
 	local neverglade = {}
