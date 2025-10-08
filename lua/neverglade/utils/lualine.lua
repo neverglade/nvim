@@ -9,8 +9,8 @@ return function(variety)
 
 	neverglade.normal = {
 		a = { bg = C.lichen, fg = C.root, gui = "bold" },
-		b = { bg = C.bark, fg = C.gray2 },
-		c = { bg = C.heartwood, fg = C.gray1 },
+		b = { bg = C.bark, fg = C.text },
+		c = { bg = C.heartwood, fg = C.text },
 	}
 
 	neverglade.insert = {

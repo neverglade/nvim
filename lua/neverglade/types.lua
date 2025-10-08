@@ -1,7 +1,7 @@
 ---@class Neverglade
 ---@field config Neverglade.Options
 ---@field setup fun(opts: Neverglade.Options)
----@field load fun()
+---@field load fun(variety?: Neverglade.Variety)
 
 ---@alias Neverglade.Variety "ebony" | "oak" | "birch"
 

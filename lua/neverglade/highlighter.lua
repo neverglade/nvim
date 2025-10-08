@@ -36,7 +36,7 @@ local function apply_table(t)
 end
 
 ---Generates the various highlight groups for this colour scheme to be used by Neovim.
-M.generate_theme = function(s, options)
+M.generate_theme = function(scheme)
 	---@enum Styles
 	S = {
 		bold = "bold",
@@ -50,7 +50,7 @@ M.generate_theme = function(s, options)
 	}
 
 	O = require("neverglade").config
-	C = require("neverglade.colors").generate_scheme(O, O.variety)
+	C = scheme
 	U = require("neverglade.color_util")
 
 	local optional_italics = { S.italic }
@@ -92,29 +92,29 @@ M.generate_theme = function(s, options)
 	theme = apply_table(theme)
 
 	if O.terminal then
-		vim.g.terminal_color_0 = s.sapwood
-		vim.g.terminal_color_8 = s.sapwood
+		vim.g.terminal_color_0 = C.sapwood
+		vim.g.terminal_color_8 = C.sapwood
 
-		vim.g.terminal_color_1 = s.ember
-		vim.g.terminal_color_9 = s.ember
+		vim.g.terminal_color_1 = C.ember
+		vim.g.terminal_color_9 = C.ember
 
-		vim.g.terminal_color_2 = s.lichen
-		vim.g.terminal_color_10 = s.lichen
+		vim.g.terminal_color_2 = C.lichen
+		vim.g.terminal_color_10 = C.lichen
 
-		vim.g.terminal_color_3 = s.ochre
-		vim.g.terminal_color_11 = s.ochre
+		vim.g.terminal_color_3 = C.ochre
+		vim.g.terminal_color_11 = C.ochre
 
-		vim.g.terminal_color_4 = s.sky
-		vim.g.terminal_color_12 = s.sky
+		vim.g.terminal_color_4 = C.sky
+		vim.g.terminal_color_12 = C.sky
 
-		vim.g.terminal_color_5 = s.lavender
-		vim.g.terminal_color_13 = s.lavender
+		vim.g.terminal_color_5 = C.lavender
+		vim.g.terminal_color_13 = C.lavender
 
-		vim.g.terminal_color_6 = s.aurora
-		vim.g.terminal_color_14 = s.aurora
+		vim.g.terminal_color_6 = C.aurora
+		vim.g.terminal_color_14 = C.aurora
 
-		vim.g.terminal_color_7 = s.text
-		vim.g.terminal_color_15 = s.text
+		vim.g.terminal_color_7 = C.text
+		vim.g.terminal_color_15 = C.text
 	end
 
 	return theme

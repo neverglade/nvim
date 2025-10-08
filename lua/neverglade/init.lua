@@ -41,8 +41,9 @@ M.setup = function(opts)
 	M.config = vim.tbl_extend("keep", opts or {}, M.default_config)
 end
 
-M.load = function()
-	local scheme = colors.generate_scheme(M.config, M.config.variety)
+M.load = function(variety)
+	local v = variety or M.config.variety or "oak"
+	local scheme = colors.generate_scheme(M.config, v)
 	local generated_syntax = highlighter.generate_theme(scheme, M.config)
 
 	util.load(generated_syntax)
