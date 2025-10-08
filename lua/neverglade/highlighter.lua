@@ -1,20 +1,8 @@
 ---@class Neverglade.Highlighter
-local highlights = {}
+local M = {}
 
 ---@type Neverglade.ColourUtility
 local c_util = require("neverglade.color_util")
-
----@enum Styles
-local styles = {
-	bold = "bold",
-	italic = "italic",
-	reverse = "reverse",
-	undercurl = "undercurl",
-	underline = "underline",
-	standout = "standout",
-	strikethrough = "strikethrough",
-	nocombine = "nocombine",
-}
 
 ---Generates a table that can be accepted by nvim_set_hl
 ---@param fg string
@@ -39,64 +27,68 @@ local function syntax_entry(fg, bg, stylings, sp)
 	return highlight
 end
 
----Generates the various highlight groups for this colour scheme to be used by Neovim.
-highlights.generate_syntax = function(s, options)
-	local comment_italics = options.italic_comments and { styles.italic } or {}
-	local optional_italics = options.italics and { styles.italic } or {}
+---@param highlight Neverglade.Highlight
+local function apply_styles(highlight)
+	---@type {fg: string, bg: string, [Neverglade.HighlightArgs]: boolean?, sp: string}
+	local hl = {
+		fg = highlight.fg,
+		bg = highlight.bg,
+	}
 
-	---This respects the transparency settings of the user.
-	---@param colour_to_set string The intended background if tranparency is disabled
-	---@return string
-	local function transparency_respecting_colour(colour_to_set)
-		if options.transparent_background > 0 then
-			return s.none
-		else
-			return colour_to_set
+	if highlight.style then
+		for _, style in pairs(highlight.style) do
+			hl[style] = true
 		end
 	end
+	return hl
+end
+
+---@param t Neverglade.Highlights
+---@return {fg: string, bg: string, [Styles]: boolean?, sp?: string}
+local function apply_table(t)
+	local ret = {}
+	for g, hl in pairs(t) do
+		ret[g] = apply_styles(hl)
+	end
+
+	return ret
+end
+
+---Generates the various highlight groups for this colour scheme to be used by Neovim.
+M.generate_theme = function(s, options)
+	---@enum Styles
+	S = {
+		bold = "bold",
+		italic = "italic",
+		reverse = "reverse",
+		undercurl = "undercurl",
+		underline = "underline",
+		standout = "standout",
+		strikethrough = "strikethrough",
+		nocombine = "nocombine",
+	}
+
+	O = require("neverglade").config
+	C = require("neverglade.colors").generate_scheme(O, O.variety)
+
+	local optional_italics = { S.italic }
+	local comment_italics = { S.italic }
+
+	local theme = {}
+
+	local editor = require("neverglade.groups.editor").get()
+	theme = vim.tbl_deep_extend("force", theme, editor)
+
+	theme = apply_table(theme)
 
 	---@type Neverglade.Highlights
 	local syntax = {
-		ColorColumn = syntax_entry(s.none, s.root),
-		Conceal = syntax_entry(s.bark, s.gray0),
-		CurSearch = { link = "IncSearch" },
-		Cursor = syntax_entry(s.none, s.none, { styles.reverse }),
-		lCursor = { link = "Cursor" },
-		CursorIM = { link = "Cursor" },
-		CursorColumn = syntax_entry(s.none, s.root),
-		CursorLine = syntax_entry(s.none, s.root),
-		Directory = syntax_entry(s.lichen, s.none),
 		--- DiffAdd, DiffChange, DiffDelete, DiffText
-		EndOfBuffer = syntax_entry((options.show_eob and s.branch) or s.root, s.none),
 		TermCursor = { link = "Cursor" },
 		TermCursorNC = { link = "Cursor" },
-		ErrorMsg = syntax_entry(s.ember, s.none, { styles.bold, styles.underline }),
 		WinSeparator = { link = "VertSplit" },
-		Folded = syntax_entry(s.gray1, transparency_respecting_colour(s.root)),
 		--- FoldColumn, SignColumn
 		IncSearch = syntax_entry(s.root, s.ember),
-		Substitute = syntax_entry(s.root, s.ochre),
-		LineNr = syntax_entry(s.bark, s.none),
-		LineNrAbove = syntax_entry(s.bark, s.none),
-		LineNrBelow = syntax_entry(s.bark, s.none),
-		CursorLineNr = syntax_entry(s.gray1, s.root),
-		MatchParen = syntax_entry(s.none, s.branch),
-		ModeMsg = syntax_entry(s.text, s.none, { styles.bold }),
-		MoreMsg = syntax_entry(s.ochre, s.none, { styles.bold }),
-		NonText = syntax_entry(s.branch, s.none),
-		Normal = syntax_entry(s.text, transparency_respecting_colour(s.root)),
-		NormalFloat = syntax_entry(s.text, s.earth),
-		FloatBorder = syntax_entry(s.gray1, s.earth),
-		FloatTitle = syntax_entry(s.gray1, s.earth, { styles.bold }),
-		NormalNC = syntax_entry(s.text, s.root),
-		Pmenu = syntax_entry(s.text, s.sapwood),
-		PmenuSbar = syntax_entry(s.none, s.sapwood),
-		PmenuSel = syntax_entry(s.root, s.lichen),
-		PmenuThumb = syntax_entry(s.none, s.gray0),
-		Question = syntax_entry(s.ochre, s.none),
-		QuickFixLine = syntax_entry(s.lavender, s.none, { styles.bold }),
-		Search = syntax_entry(s.root, s.lichen),
-		SpecialKey = syntax_entry(s.ochre, s.none),
 		--- SpellBad, SpellLocal, SpellRare
 		StatusLine = syntax_entry(s.gray1, s.sapwood),
 		StatusLineNC = syntax_entry(
@@ -106,13 +98,13 @@ highlights.generate_syntax = function(s, options)
 		TabLine = syntax_entry(s.gray2, s.heartwood),
 		TabLineFill = syntax_entry(s.gray1, s.heartwood),
 		TabLineSel = syntax_entry(s.root, s.lichen),
-		Title = syntax_entry(s.rust, s.none, { styles.bold }),
+		Title = syntax_entry(s.rust, s.none, { S.bold }),
 		Visual = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
 		VisualNOS = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
-		WarningMsg = syntax_entry(s.ochre, s.none, { styles.bold }),
+		WarningMsg = syntax_entry(s.ochre, s.none, { S.bold }),
 		Whitespace = syntax_entry(s.bark, s.none),
 		WildMenu = { link = "PmenuSel" },
-		WinBar = syntax_entry(s.gray1, s.sapwood, { styles.bold }),
+		WinBar = syntax_entry(s.gray1, s.sapwood, { S.bold }),
 		WinBarNC = syntax_entry(s.gray1, s.heartwood),
 		Terminal = syntax_entry(s.text, s.root),
 		ToolbarLine = syntax_entry(s.text, s.sapwood),
@@ -139,30 +131,14 @@ highlights.generate_syntax = function(s, options)
 		Gray1 = syntax_entry(s.gray1, s.none),
 		Gray0 = syntax_entry(s.gray0, s.none),
 
-		EmberItalic = syntax_entry(s.ember, s.none, optional_italics),
-		RustItalic = syntax_entry(s.rust, s.none, optional_italics),
-		OchreItalic = syntax_entry(s.ochre, s.none, optional_italics),
-		LichenItalic = syntax_entry(s.lichen, s.none, optional_italics),
-		AuroraItalic = syntax_entry(s.aurora, s.none, optional_italics),
-		SkyItalic = syntax_entry(s.sky, s.none, optional_italics),
-		LavenderItalic = syntax_entry(s.lavender, s.none, optional_italics),
-
-		EmberBold = syntax_entry(s.ember, s.none, { styles.bold }),
-		RustBold = syntax_entry(s.rust, s.none, { styles.bold }),
-		OchreBold = syntax_entry(s.ochre, s.none, { styles.bold }),
-		LichenBold = syntax_entry(s.lichen, s.none, { styles.bold }),
-		AuroraBold = syntax_entry(s.aurora, s.none, { styles.bold }),
-		SkyBold = syntax_entry(s.sky, s.none, { styles.bold }),
-		LavenderBold = syntax_entry(s.lavender, s.none, { styles.bold }),
-
 		Added = { link = "Moss" },
 		Removed = { link = "Ember" },
 		Changed = { link = "Aurora" },
 
-		ErrorText = syntax_entry(s.none, options.diagnostics.text and s.ember or s.none, { styles.undercurl }),
-		WarningText = syntax_entry(s.none, options.diagnostics.text and s.ochre or s.none, { styles.undercurl }),
-		InfoText = syntax_entry(s.none, options.diagnostics.text and s.sky or s.none, { styles.undercurl }),
-		HintText = syntax_entry(s.none, options.diagnostics.text and s.lavender or s.none, { styles.undercurl }),
+		ErrorText = syntax_entry(s.none, options.diagnostics.text and s.ember or s.none, { S.undercurl }),
+		WarningText = syntax_entry(s.none, options.diagnostics.text and s.ochre or s.none, { S.undercurl }),
+		InfoText = syntax_entry(s.none, options.diagnostics.text and s.sky or s.none, { S.undercurl }),
+		HintText = syntax_entry(s.none, options.diagnostics.text and s.lavender or s.none, { S.undercurl }),
 
 		--- Disable line styles
 		ErrorLine = syntax_entry(s.none, s.none),
@@ -181,7 +157,7 @@ highlights.generate_syntax = function(s, options)
 		InfoFloat = syntax_entry(s.sky, s.none),
 		HintFloat = syntax_entry(s.lavender, s.none),
 		OkFloat = syntax_entry(s.moss, s.none),
-		CurrentWord = syntax_entry(s.none, s.none, { styles.bold }),
+		CurrentWord = syntax_entry(s.none, s.none, { S.bold }),
 
 		--- LSP
 		Boolean = syntax_entry(s.lavender, s.none),
@@ -219,7 +195,7 @@ highlights.generate_syntax = function(s, options)
 
 		Delimiter = syntax_entry(s.text, s.none),
 		Ignore = syntax_entry(s.gray1, s.none),
-		Underlined = syntax_entry(s.none, s.none, { styles.underline }),
+		Underlined = syntax_entry(s.none, s.none, { S.underline }),
 
 		--- Treesitter
 		["@variable"] = { link = "Text" },
@@ -263,7 +239,7 @@ highlights.generate_syntax = function(s, options)
 		vim.g.terminal_color_15 = s.text
 	end
 
-	return syntax
+	return theme
 end
 
-return highlights
+return M

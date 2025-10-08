@@ -1,0 +1,55 @@
+---@class Neverglade.HighlightGroup
+local M = {}
+
+function M.get()
+	return {
+		ColorColumn = { bg = C.root },
+		Conceal = { fg = C.bark, bg = C.gray0 },
+		Cursor = { style = { S.reverse } },
+		lCursor = { link = "Cursor" },
+		CursorIM = { link = "Cursor" },
+		CursorColumn = { bg = C.root },
+		CursorLine = { bg = C.root },
+		Directory = { fg = C.lichen },
+		EndOfBuffer = { fg = (O.show_eob and C.branch) or C.root },
+		ErrorMsg = { fg = C.ember, style = { S.bold, S.underline } },
+		VertSplit = { fg = C.bark },
+		Folded = { fg = C.gray1, bg = O.transparent_background and C.none or C.heartwood },
+		FoldColumn = { fg = C.leaf },
+		SignColumn = { fg = C.text },
+		Substitute = { bg = C.heartwood, fg = C.peony },
+		LineNr = { fg = C.bark },
+		LineNrAbove = { fg = C.bark },
+		LineNrBelow = { fg = C.bark },
+		CursorLineNr = { fg = C.gray1, bg = C.root },
+		MatchParen = { bg = C.branch },
+		ModeMsg = { fg = C.text, style = { S.bold } },
+		MsgSeparator = {},
+		MoreMsg = { fg = C.ochre, style = { S.bold } },
+		NonText = { fg = C.branch },
+		Normal = { fg = C.text, bg = O.transparent_background and C.none or C.root },
+		NormalNC = {
+			fg = C.text,
+			bg = O.transparent_background and C.none or C.root,
+		},
+		NormalFloat = { fg = C.text, bg = C.heartwood },
+		FloatBorder = { fg = C.lichen, bg = C.none },
+		FloatTitle = { fg = C.gray1, bg = C.earth, style = { S.bold } },
+		Pmenu = { fg = C.text, bg = C.sapwood },
+		PmenuSbar = { bg = C.sapwood },
+		PmenuSel = { fg = C.root, bg = C.lichen },
+		PmenuThumb = { bg = C.gray0 },
+		Question = { fg = C.ochre },
+		QuickFixLine = { fg = C.lavender, style = { S.bold } },
+		Search = { fg = C.root, bg = C.lichen },
+		IncSearch = { fg = C.root, bg = C.ember },
+		CurSearch = { link = "IncSearch" },
+		SpecialKey = { fg = C.ochre },
+		SpellBad = { sp = C.ember, style = { S.undercurl } },
+		SpellCap = { sp = C.sky, style = { S.undercurl } },
+		SpellLocal = { sp = C.aurora, style = { S.undercurl } },
+		SpellRare = { sp = C.lavender, style = { S.undercurl } },
+	}
+end
+
+return M

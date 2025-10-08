@@ -1,7 +1,7 @@
 ---@type Neverglade.Colors
 local colors = require("neverglade.colors")
 ---@type Neverglade.Highlights
-local highlights = require("neverglade.highlights")
+local highlighter = require("neverglade.highlighter")
 ---@type Neverglade.Util
 local util = require("neverglade.util")
 
@@ -11,9 +11,10 @@ local M = {
 	default_config = {
 		--- Controls how
 		variety = "ebony",
-		transparent_background = 0,
+		transparent_background = false,
 		italics = true,
 		italic_comments = true,
+
 		show_eob = false,
 		diagnostics = {
 			text = false,
@@ -31,7 +32,7 @@ end
 
 M.load = function()
 	local scheme = colors.generate_scheme(M.config, M.config.variety)
-	local generated_syntax = highlights.generate_syntax(scheme, M.config)
+	local generated_syntax = highlighter.generate_theme(scheme, M.config)
 
 	util.load(generated_syntax)
 end

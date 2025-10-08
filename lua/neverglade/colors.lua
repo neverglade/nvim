@@ -50,7 +50,6 @@ local base_scheme = {
 		peony = "#D699B6",
 		lavender = "#B6AFF3",
 		sky = "#75ABBD",
-		none = "NONE",
 	},
 	oak = {
 		text = "#DCD2BC",
@@ -68,7 +67,6 @@ local base_scheme = {
 		peony = "#D48CAE",
 		lavender = "#A19EEA",
 		sky = "#68A6BB",
-		none = "NONE",
 	},
 	birch = {
 		text = "#546168",
@@ -86,7 +84,6 @@ local base_scheme = {
 		peony = "#DF69BA",
 		lavender = "#9990EF",
 		sky = "#3A94C5",
-		none = "NONE",
 	},
 }
 
@@ -99,6 +96,7 @@ M.generate_scheme = function(options, theme)
 
 	---@type Neverglade.Scheme
 	local combined = vim.tbl_extend("force", base, background)
+	combined.none = "NONE"
 
 	return combined
 end
