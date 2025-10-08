@@ -27,12 +27,14 @@ local function syntax_entry(fg, bg, stylings, sp)
 	return highlight
 end
 
+--- Converts a Nevserglade.Highlight into a table to be accepted by nvim_set_hl
 ---@param highlight Neverglade.Highlight
 local function apply_styles(highlight)
 	---@type {fg: string, bg: string, [Neverglade.HighlightArgs]: boolean?, sp: string}
 	local hl = {
 		fg = highlight.fg,
 		bg = highlight.bg,
+		link = highlight.link,
 	}
 
 	if highlight.style then
@@ -40,9 +42,14 @@ local function apply_styles(highlight)
 			hl[style] = true
 		end
 	end
+
+	if highlight.sp then
+		hl["sp"] = highlight.sp
+	end
 	return hl
 end
 
+--- Converts a table of highlights into a table of highlights for use in nvim_set_hl
 ---@param t Neverglade.Highlights
 ---@return {fg: string, bg: string, [Styles]: boolean?, sp?: string}
 local function apply_table(t)
@@ -70,6 +77,7 @@ M.generate_theme = function(s, options)
 
 	O = require("neverglade").config
 	C = require("neverglade.colors").generate_scheme(O, O.variety)
+	U = require("neverglade.color_util")
 
 	local optional_italics = { S.italic }
 	local comment_italics = { S.italic }
@@ -84,35 +92,6 @@ M.generate_theme = function(s, options)
 	---@type Neverglade.Highlights
 	local syntax = {
 		--- DiffAdd, DiffChange, DiffDelete, DiffText
-		TermCursor = { link = "Cursor" },
-		TermCursorNC = { link = "Cursor" },
-		WinSeparator = { link = "VertSplit" },
-		--- FoldColumn, SignColumn
-		IncSearch = syntax_entry(s.root, s.ember),
-		--- SpellBad, SpellLocal, SpellRare
-		StatusLine = syntax_entry(s.gray1, s.sapwood),
-		StatusLineNC = syntax_entry(
-			options.transparent_background == 2 and s.gray0 or s.gray1,
-			options.transparent_background == 2 and s.none or s.heartwood
-		),
-		TabLine = syntax_entry(s.gray2, s.heartwood),
-		TabLineFill = syntax_entry(s.gray1, s.heartwood),
-		TabLineSel = syntax_entry(s.root, s.lichen),
-		Title = syntax_entry(s.rust, s.none, { S.bold }),
-		Visual = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
-		VisualNOS = syntax_entry(s.none, c_util.blend_bg(s.lichen, 0.3, s.root)),
-		WarningMsg = syntax_entry(s.ochre, s.none, { S.bold }),
-		Whitespace = syntax_entry(s.bark, s.none),
-		WildMenu = { link = "PmenuSel" },
-		WinBar = syntax_entry(s.gray1, s.sapwood, { S.bold }),
-		WinBarNC = syntax_entry(s.gray1, s.heartwood),
-		Terminal = syntax_entry(s.text, s.root),
-		ToolbarLine = syntax_entry(s.text, s.sapwood),
-
-		StatusLineTerm = syntax_entry(s.gray1, s.heartwood),
-		StatusLineTermNC = syntax_entry(s.gray1, s.root),
-
-		VertSplit = syntax_entry(s.bark, s.none),
 
 		--- Syntax
 
@@ -213,7 +192,7 @@ M.generate_theme = function(s, options)
 		["@string"] = { link = "String" },
 	}
 
-	if options.terminal then
+	if O.terminal then
 		vim.g.terminal_color_0 = s.sapwood
 		vim.g.terminal_color_8 = s.sapwood
 

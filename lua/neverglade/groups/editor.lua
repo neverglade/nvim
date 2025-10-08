@@ -49,6 +49,25 @@ function M.get()
 		SpellCap = { sp = C.sky, style = { S.undercurl } },
 		SpellLocal = { sp = C.aurora, style = { S.undercurl } },
 		SpellRare = { sp = C.lavender, style = { S.undercurl } },
+		StatusLine = { fg = C.gray1, bg = C.sapwood },
+		StatusLineNC = {
+			fg = O.transparent_background and C.gray0 or C.gray1,
+			bg = O.transparent_background and C.none or C.heartwood,
+		},
+		TabLine = { fg = C.gray2, bg = C.heartwood },
+		TabLineFill = { fg = C.gray1, bg = C.heartwood },
+		TabLineSel = { fg = C.root, bg = C.lichen },
+		TermCursor = { link = "Cursor" },
+		TermCursorNC = { link = "Cursor" },
+		Title = { fg = C.rust, style = { S.bold } },
+		Visual = { bg = U.blend_bg(C.lichen, 0.3, C.root) },
+		VisualNOS = { link = "Visual" },
+		WarningMsg = { fg = C.ochre, style = { S.bold } },
+		Whitespace = { fg = C.bark },
+		WildMenu = { link = "PmenuSel" },
+		WinBar = { fg = C.gray1, bg = C.sapwood, style = { S.bold } },
+		WinBarNC = { fg = C.gray1, bg = C.heartwood },
+		WinSeparator = { link = "VertSplit" },
 	}
 end
 

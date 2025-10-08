@@ -54,8 +54,9 @@
 ---@class Neverglade.Highlight
 ---@field fg string?
 ---@field bg string?
+---@field sp? string
 ---@field style Neverglade.HighlightArgs[]?
----@field link string
+---@field link string?
 
 ---@alias Neverglade.Highlights table<string, Neverglade.Highlight>
 
@@ -68,8 +69,7 @@
 ---@field get fun(): Neverglade.Highlights
 
 ---@class Neverglade.Highlighter
----@field generate_theme fun(scheme: Neverglade.Scheme, options: Neverglade.Options): Neverglade.Highlights
-
+---@field generate_theme fun(scheme: Neverglade.Scheme, options: Neverglade.Options): any
 ---@class Neverglade.Colors
 ---@field generate_scheme fun(options: Neverglade.Options, theme: Neverglade.Backgrounds): Neverglade.Scheme
 
