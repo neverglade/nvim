@@ -100,43 +100,6 @@ M.generate_theme = function(s, options)
 
 	theme = apply_table(theme)
 
-	---@type Neverglade.Highlights
-	local syntax = {
-		--- DiffAdd, DiffChange, DiffDelete, DiffText
-
-		--- Syntax
-
-		Text = syntax_entry(s.text, s.none),
-		Gray = syntax_entry(s.gray1, s.none),
-		Ember = syntax_entry(s.ember, s.none),
-		Rust = syntax_entry(s.rust, s.none),
-		Ochre = syntax_entry(s.ochre, s.none),
-		Lichen = syntax_entry(s.lichen, s.none),
-		Moss = syntax_entry(s.moss, s.none),
-		Aurora = syntax_entry(s.aurora, s.none),
-		Peony = syntax_entry(s.peony, s.none),
-		Sky = syntax_entry(s.sky, s.none),
-		Lavender = syntax_entry(s.lavender, s.none),
-		Gray2 = syntax_entry(s.gray2, s.none),
-		Gray1 = syntax_entry(s.gray1, s.none),
-		Gray0 = syntax_entry(s.gray0, s.none),
-
-		--- Treesitter
-		["@variable"] = { link = "Text" },
-		["@variable.builtin"] = { link = "LavenderItalic" },
-		["@variable.parameter"] = { link = "Text" },
-		["@variable.member"] = { link = "aurora" },
-
-		["@constant"] = { link = "Aurora" },
-		["@constant.builtin"] = { link = "LavenderItalic" },
-		["@constant.macro"] = { link = "LavenderItalic" },
-
-		["@module"] = { link = "OchreItalic" },
-		["@label"] = { link = "Rust" },
-
-		["@string"] = { link = "String" },
-	}
-
 	if O.terminal then
 		vim.g.terminal_color_0 = s.sapwood
 		vim.g.terminal_color_8 = s.sapwood
