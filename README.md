@@ -10,7 +10,7 @@
 
 
 <p align="center">
-  Neverglade comes in 3 varieties, each with 22 medium-contrast colours. It aims to be a calming and focused theme focused on the colour green. It makes minimal use of accent colours outside of syntax. Integrations are provided for a number of popular Neovim plugins.
+  Neverglade comes in 3 varieties, each with 22 medium-contrast colours. It aims to be a calming and focused theme based around the colour green. It makes minimal use of accent colours outside of syntax. Integrations are provided for a number of popular Neovim plugins.
   
 </p>
 
@@ -98,6 +98,7 @@ This is the section where I temper expectations. I do, from the bottom of my hea
 
 ## Thanks
 A huge thanks to [sainnhe](https://github.com/sainnhe). His [Everforest](https://github.com/sainnhe/everforest) scheme for Vim was the direct inspiration for the entire Neverglade project. Some additional thanks to the maintainers of the [Catppuccin](https://github.com/catppuccin) theme. Their code was used extensively as a reference for theme plugin development and integrations. I also shamelessly ripped off their `README.md`.
+
 
 
 
