@@ -91,11 +91,14 @@ require("neverglade").setup({
 ```
 Integrations for popular plugins (e.g. `which-key`, `mason`, and `neotree`) are enabled by default. To disable this behaviour, set `default_integrations` to false.
 
+*A full list of integrations will be provided in the README soon, but for now one can view available integrations via `./lua/neverglade/groups/integrations/*.lua`*.
+
 ## Caveats
 This is the section where I temper expectations. I do, from the bottom of my heart, believe I have created a very good colour scheme. However! I am not a Neovim plugin author. This plugin was a learning process for me, cobbled together with the code of `everforest-nvim`. `catppuccin` and `rose-pine` as reference. If any experienced plugin authors take an interest in this theme, please feel free to call me stupid and wrong!
 
 ## Thanks
 A huge thanks to [sainnhe](https://github.com/sainnhe). His [Everforest](https://github.com/sainnhe/everforest) scheme for Vim was the direct inspiration for the entire Neverglade project. Some additional thanks to the maintainers of the [Catppuccin](https://github.com/catppuccin) theme. Their code was used extensively as a reference for theme plugin development and integrations. I also shamelessly ripped off their `README.md`.
+
 
 
 
