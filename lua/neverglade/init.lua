@@ -27,6 +27,7 @@ local M = {
 			which_key = true,
 			blink_cmp = true,
 			mason = true,
+			neotree = true,
 		},
 	},
 }

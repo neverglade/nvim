@@ -25,6 +25,7 @@
 ---@field which_key boolean?
 ---@field blink_cmp boolean?
 ---@field mason boolean?
+---@field neotree boolean?
 
 ---@class Neverglade.SchemeBackground
 ---@field earth string
