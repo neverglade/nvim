@@ -80,10 +80,10 @@ local base_scheme = {
 		ember = "#F85552",
 		rust = "#F57D26",
 		ochre = "#DFA000",
-		aurora = "#53C6C2",
+		aurora = "#36BA9F",
 		peony = "#DF69BA",
 		lavender = "#9990EF",
-		sky = "#3A94C5",
+		sky = "#4E9FCB",
 	},
 }
 
