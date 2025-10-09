@@ -4,7 +4,13 @@
 </h4>
 
 <p align="center">
-  Neverglade comes in 3 varieties, each with 22 low-contrast colours. It aims to be a calming and focused theme, making minimal use of accent colours outside of syntax. Integrations are provided for a number of popular Neovim plugins.
+<img width="600" alt="NVIM" src="https://github.com/user-attachments/assets/39282ee6-b169-46de-bbc4-bf97a2c0d356" />  
+</p>
+
+
+
+<p align="center">
+  Neverglade comes in 3 varieties, each with 22 medium-contrast colours. It aims to be a calming and focused theme focused on the colour green. It makes minimal use of accent colours outside of syntax. Integrations are provided for a number of popular Neovim plugins.
   
 </p>
 
@@ -13,25 +19,83 @@
 ## Previews
 <details>
   <summary>Ebony</summary>
-    <img width="1470" height="923" alt="Screenshot 2025-10-08 at 19 36 58" src="https://github.com/user-attachments/assets/4741e838-4ac1-4935-9208-123c089eeae1" />
+    <img width="1470" height="923" alt="Screenshot 2025-10-09 at 07 22 55" src="https://github.com/user-attachments/assets/88e271ce-69da-4865-ae4b-4d1f304ca149" />
+
   </details>
   <details>
     <summary>Oak</summary>
-      <img width="1470" height="923" alt="Screenshot 2025-10-08 at 19 36 48" src="https://github.com/user-attachments/assets/fe12602a-071b-4f99-8f5b-4611f64c8d28" />
+<img width="1470" height="923" alt="Screenshot 2025-10-09 at 07 22 39" src="https://github.com/user-attachments/assets/c9da6a02-2ec3-4272-9452-88482101550a" />
+
   </details>
   <details>
     <summary>Birch</summary>  
-<img width="1470" height="923" alt="Screenshot 2025-10-08 at 19 37 12" src="https://github.com/user-attachments/assets/bb8cd100-7b04-4bc1-adc3-81045bf7a59c" />
+<img width="1470" height="923" alt="Screenshot 2025-10-09 at 07 22 17" src="https://github.com/user-attachments/assets/f8f619ef-8621-4ae9-87b5-2ca663e6aaf6" />
   </details>
 
+## Features
+- Support for other applications
+- Integrations with various plugins
+- Transparent background support
 
 
 
 ## Installation
+[lazy.nvim](https://github.com/folke/lazy.nvim)
+```lua
+{ "neverglade/nvim", name="neverglade", lazy = false }
+```
+
+## Usage 
+```vim
+colorscheme neverglade " neverglade-ebony neverglade-oak neverglade-birch
+```
+
+```lua
+vim.cmd.colorscheme "neverglade"
+```
+
+## Configuration
+Defaults are provided for all configuration options. Unless you want to change configuration options calling setup is not required.
+```lua
+require("neverglade").setup({
+  variety = "oak", -- Controls the scheme variety: ebony, oak, or birch  
+  transparent_background = false, -- Whether backgrounds should be transparent
+  italics = true, -- Controls italics within syntax highlighting (e.g. func)
+  italic_comments = true, -- Whether comments are italicisized
+
+  show_eob = false, -- Whether the EOB (End of Buffer) is shown
+  diagnostics = {
+    text = false, -- Whether diagnostic styles should be applied to text
+    virtual = "colored", -- Virtual text diagnostics colour, "gray" or "colored"
+  },
+  terminal = true, -- Whether to set the vim termcolors
+  default_integrations = true, -- Whether to use the default integrations
+  integrations = { -- Integrations table, default values controlled by the option above
+    telescope = true,
+    which_key = true,
+    blink_cmp = true,
+    mason = true,
+    neotree = true,
+  },
+})
+```
 
 ## Integrations
+Neverglade dynamically loads highlight groups based on the `integrations` table within the configuration. To enable/disable an integration, just set its boolean value.
+```lua
+require("neverglade").setup({
+  integrations = {
+    neotree = false
+  }
+})
+```
+Integrations for popular plugins (e.g. `which-key`, `mason`, and `neotree`) are enabled by default. To disable this behaviour, set `default_integrations` to false.
 
 ## Caveats
 This is the section where I temper expectations. I do, from the bottom of my heart, believe I have created a very good colour scheme. However! I am not a Neovim plugin author. This plugin was a learning process for me, cobbled together with the code of `everforest-nvim`. `catppuccin` and `rose-pine` as reference. If any experienced plugin authors take an interest in this theme, please feel free to call me stupid and wrong!
+
+## Thanks
+A huge thanks to [sainnhe](https://github.com/sainnhe). His [Everforest](https://github.com/sainnhe/everforest) scheme for Vim was the direct inspiration for the entire Neverglade project. Some additional thanks to the maintainers of the [Catppuccin](https://github.com/catppuccin) theme. Their code was used extensively as a reference for theme plugin development and integrations. I also shamelessly ripped off their `README.md`.
+
 
 
