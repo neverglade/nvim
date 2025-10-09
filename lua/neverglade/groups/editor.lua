@@ -49,7 +49,7 @@ function M.get()
 		SpellCap = { sp = C.sky, style = { S.undercurl } },
 		SpellLocal = { sp = C.aurora, style = { S.undercurl } },
 		SpellRare = { sp = C.lavender, style = { S.undercurl } },
-		StatusLine = { fg = C.gray1, bg = C.sapwood },
+		StatusLine = { fg = C.gray1, bg = C.heartwood },
 		StatusLineNC = {
 			fg = O.transparent_background and C.gray0 or C.gray1,
 			bg = O.transparent_background and C.none or C.heartwood,
