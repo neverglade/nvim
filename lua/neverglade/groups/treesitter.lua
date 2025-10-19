@@ -83,8 +83,8 @@ function M.get()
 
 		["@tag"] = { fg = C.ember },
 		["@tag.builtin"] = { fg = C.ember },
-		["@tag.attribute"] = { fg = C.sky },
-		["@tag.delimiter"] = { fg = C.rust },
+		["@tag.attribute"] = { fg = C.rust },
+		["@tag.delimiter"] = { fg = C.ember },
 	}
 end
 
