@@ -80,6 +80,11 @@ function M.get()
 		["@comment.hint"] = { fg = C.root, bg = C.ochre },
 		["@comment.todo"] = { fg = C.root, bg = C.lichen },
 		["@comment.note"] = { fg = C.root, bg = C.peony },
+
+		["@tag"] = { fg = C.ember },
+		["@tag.builtin"] = { fg = C.ember },
+		["@tag.attribute"] = { fg = C.sky },
+		["@tag.delimiter"] = { fg = C.rust },
 	}
 end
 
