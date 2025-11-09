@@ -8,7 +8,7 @@ function M.get()
 		Cursor = { style = { S.reverse } },
 		lCursor = { link = "Cursor" },
 		CursorIM = { link = "Cursor" },
-		CursorColumn = { bg = C.gray0 },
+		CursorColumn = { bg = C.root },
 		CursorLine = { bg = C.root },
 		Directory = { fg = C.lichen },
 		EndOfBuffer = { fg = (O.show_eob and C.branch) or C.root },
